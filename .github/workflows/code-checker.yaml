@@ -14,5 +14,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      - name: Install virtualenv
+        run: python -m venv venv
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
       - name: Run project
         run: python manage.py runserver
