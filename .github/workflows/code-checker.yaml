@@ -25,3 +25,6 @@ jobs:
 
       - name: Curl
         run: curl -v http://127.0.0.1:8000/course/list/
+
+      - name: run newman
+        run: npm install -g newman && newman run api-checker.postman_collection.json --verbose -r json
