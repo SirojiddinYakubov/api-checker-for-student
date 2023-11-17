@@ -1,8 +1,8 @@
 name: Code Check CI/CD
 on:
   workflow_dispatch:
-  push:
-    branches: [ test ]
+#  push:
+#    branches: [ test ]
 permissions:
   contents: write
 
@@ -17,8 +17,11 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
       - name: Run project
-        run: docker compose up -d && docker compose ps && docker logs app
+        run: gunicorn -b 0.0.0.0:8000 --workers=49 --threads=2 core.wsgi --reload --daemon
 
       - name: Curl
         run: curl -v http://127.0.0.1:8000/course/list/
@@ -31,7 +34,7 @@ jobs:
         with:
           node-version: '18'
       - run: npm install -g newman
-      - run: newman run api-checker.postman_collection.json --reporter-json-export ./newman/my_report.json --verbose -r cli,json
+      - run: newman run https://mega.nz/file/Aas1EKTI#UUtOIR9tduZg4FKKUEBj8b3T1NM30zrczv9_I6M45k0 --reporter-json-export ./newman/my_report.json --verbose -r cli,json
         continue-on-error: true
       #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
