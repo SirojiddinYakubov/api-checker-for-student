@@ -1,8 +1,8 @@
 name: Code Check CI/CD
 on:
   workflow_dispatch:
-#  push:
-#    branches: [ test ]
+  push:
+    branches: [ test ]
 permissions:
   contents: write
 
@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: '18'
       - run: npm install -g newman
-      - run: newman run https://mega.nz/file/Aas1EKTI#UUtOIR9tduZg4FKKUEBj8b3T1NM30zrczv9_I6M45k0 --reporter-json-export ./newman/my_report.json --verbose -r cli,json
+      - run: newman run https://drive.google.com/uc?export=download&id=1EYXu8dWLBMGRJpglDik_4Aq34neI4voJ --reporter-json-export ./newman/my_report.json --verbose -r cli,json
         continue-on-error: true
       #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
