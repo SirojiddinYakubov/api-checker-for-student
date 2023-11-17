@@ -1,8 +1,8 @@
 name: Code Check CI/CD
 on:
   workflow_dispatch:
-#  push:
-#    branches: [ test ]
+  push:
+    branches: [ test ]
 permissions:
   contents: write
 
