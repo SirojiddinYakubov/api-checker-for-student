@@ -29,12 +29,15 @@ jobs:
 #      - name: run newman
 #        run: npm install -g newman && newman run api-checker.postman_collection.json --verbose -r cli,json
 
-      - name: Run newman
-        uses: matt-ball/newman-action@master
+      - name: Run API Tests
+        id: run-newman
+        uses: anthonyvscode/newman-action@v1
         with:
           collection: api-checker.postman_collection.json
-          reporters: '["cli","json"]'
-#          environment: postman_environment.json
+          reporters: cli
+
+      - name: Output summary to console
+        run: echo ${{ steps.run-newman.outputs.summary }}
 
       - name: ls
         run: ls -la
