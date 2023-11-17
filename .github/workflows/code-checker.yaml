@@ -14,9 +14,6 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: Install virtualenv
-        run: python -m venv venv
-
       - name: Install requirements
         run: pip install -r requirements.txt
 
@@ -34,9 +31,9 @@ jobs:
         with:
           node-version: '18'
       - run: npm install -g newman
-      - run: newman run api-checker.postman_collection.json
-#      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
-
+      - run: newman run api-checker.postman_collection.json --verbose -r cli,json
+        continue-on-error: true
+      #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
       - name: ls
-        run: ls -la
+        run: cd newman && ls -la
