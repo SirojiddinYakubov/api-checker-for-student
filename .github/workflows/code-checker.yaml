@@ -30,14 +30,13 @@ jobs:
 #        run: npm install -g newman && newman run api-checker.postman_collection.json --verbose -r cli,json
 
       - name: Run API Tests
-        id: run-newman
-        uses: anthonyvscode/newman-action@v1
+        uses: actions/setup-node@v4
         with:
-          collection: api-checker.postman_collection.json
-          reporters: cli
+          node-version: '18'
+      - run: npm install -g newman
+      - run: newman run api-checker.postman_collection.json
+#      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
-      - name: Output summary to console
-        run: echo ${{ steps.run-newman.outputs.summary }}
 
       - name: ls
         run: ls -la
