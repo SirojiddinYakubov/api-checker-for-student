@@ -21,7 +21,7 @@ jobs:
 #        run: pip install -r requirements.txt
 
       - name: Run project
-        run: docker compose up -d
+        run: docker compose up -d --build
 #        run: gunicorn -b 0.0.0.0:8000 --workers=49 --threads=2 core.wsgi --reload --daemon
 
       - name: Curl
