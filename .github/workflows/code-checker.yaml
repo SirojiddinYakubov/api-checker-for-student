@@ -26,7 +26,9 @@ jobs:
 #        run: gunicorn -b 0.0.0.0:8000 --workers=49 --threads=2 core.wsgi --reload --daemon
 
       - name: Curl
-        run: curl -v http://127.0.0.1:8000/course/list/
+        run: |
+          sleep 5s
+          curl -v http://127.0.0.1:8000/course/list/
 
 #      - name: run newman
 #        run: npm install -g newman && newman run api-checker.postman_collection.json --verbose -r cli,json
