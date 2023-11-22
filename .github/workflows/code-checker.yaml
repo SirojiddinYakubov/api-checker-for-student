@@ -3,9 +3,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ test ]
-permissions:
-  contents: write
-
 jobs:
   deploy:
     name: check code
@@ -18,20 +15,13 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-#      - name: Install requirements
-#        run: pip install -r requirements.txt
-
-      - name: Run project
+      - name: Run app
         run: docker compose up -d --build
-#        run: gunicorn -b 0.0.0.0:8000 --workers=49 --threads=2 core.wsgi --reload --daemon
 
       - name: Curl
         run: |
           sleep 5s
-          curl -v http://127.0.0.1:8000/course/list/
-
-#      - name: run newman
-#        run: npm install -g newman && newman run api-checker.postman_collection.json --verbose -r cli,json
+          curl -v http://127.0.0.1:8000
 
       - name: Run API Tests
         uses: actions/setup-node@v4
@@ -41,9 +31,6 @@ jobs:
       - run: newman run https://api.postman.com/collections/16701660-18c0f4fe-5017-4290-a479-0aa7cac0d623?access_key=PMAT-01HFEM3C8MJKZ1W5YBDS3JYA4W --reporter-json-export ./newman/my_report.json --verbose -r cli,json
         continue-on-error: true
       #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
-
-      - name: ls
-        run: cd newman && ls -la
 
       - uses: actions/upload-artifact@v3
         with:
