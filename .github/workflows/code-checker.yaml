@@ -21,7 +21,7 @@ jobs:
       - name: Curl
         run: |
           sleep 5s
-          curl -v http://127.0.0.1:8000
+          curl -v http://127.0.0.1:8000/course/list/
 
       - name: Run API Tests
         uses: actions/setup-node@v4
