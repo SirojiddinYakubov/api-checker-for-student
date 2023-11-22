@@ -27,7 +27,11 @@ jobs:
 
       - name: Curl
         run: |
-          sleep 5s
+          echo "Waiting for app..."
+          while ! nc -z 127.0.0.1 8000; do
+            sleep 0.1
+          done
+          echo "App started"
           curl -v http://127.0.0.1:8000/course/list/
 
 #      - name: run newman
