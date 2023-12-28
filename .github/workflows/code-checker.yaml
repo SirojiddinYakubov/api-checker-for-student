@@ -39,6 +39,7 @@ jobs:
 
       - name: Send run_id
         run: |
-          curl --location 'https://d5b1-213-230-93-32.ngrok-free.app/api/accelerator/github/actions-run-create/${{ github.actor }}/' \
+          curl --location 'https://3a0e-213-230-87-241.ngrok-free.app/api/accelerator/github/actions-run-create/${{ github.actor }}/' \
           --header 'X-API-KEY: ${{ secrets.X_API_KEY }}' \
-          --form 'actions_run_id=${{ github.run_id }}'
+          --form 'actions_run_id=${{ github.run_id }}' \
+          --form 'project=${{ secrets.PROJECT_ID }}'
