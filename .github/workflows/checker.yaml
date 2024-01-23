@@ -39,7 +39,7 @@ jobs:
 
       - name: Send run_id
         run: |
-          curl --location 'https://c53b-5-133-120-165.ngrok-free.app/api/accelerator/code-review-feedback/${{ github.actor }}/' \
+          curl --location 'https://c53b-5-133-120-165.ngrok-free.app/api/site/accelerator/code-review-feedback/${{ github.actor }}/' \
           --header 'X-API-KEY: ${{ secrets.X_API_KEY }}' \
           --form 'actions_run_id=${{ github.run_id }}' \
           --form 'project=${{ secrets.PROJECT_ID }}'
