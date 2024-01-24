@@ -20,7 +20,6 @@ from django.contrib import admin
 from django.http import HttpResponse, JsonResponse
 from django.urls import path
 
-
 def course_list(request):
     response_data = [
         {
