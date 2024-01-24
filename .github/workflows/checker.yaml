@@ -1,8 +1,6 @@
 name: Code Check CI/CD
 on:
   workflow_dispatch:
-  push:
-    branches: [ test ]
 jobs:
   deploy:
     name: check code

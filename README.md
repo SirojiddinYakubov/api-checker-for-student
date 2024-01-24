@@ -1,4 +1,4 @@
-# Project name here
+# API Checker
 
 ## Installation
 
@@ -9,12 +9,21 @@ git clone https://github.com/SirojiddinYakubov/api-checker-for-student.git
 ```
 
 ### Up project
+
+#### Local
+
 ```
 make run
+```
+
+#### Docker
+
+```
+docker compose up -d --build
 ```
 
 ### Open browser
 
 ```
-http://0.0.0.0:8001/docs
+http://0.0.0.0:8000
 ```
