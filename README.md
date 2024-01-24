@@ -10,14 +10,6 @@ git clone https://github.com/SirojiddinYakubov/api-checker-for-student.git
 
 ### Up project
 
-#### Local
-
-```
-make run
-```
-
-#### Docker
-
 ```
 docker compose up -d --build
 ```
@@ -26,4 +18,12 @@ docker compose up -d --build
 
 ```
 http://0.0.0.0:8000
+```
+
+## Additional
+
+> **_NOTE:_**  Install a pre-commit hook to write and check your code before committing.
+
+```
+pre-commit install
 ```

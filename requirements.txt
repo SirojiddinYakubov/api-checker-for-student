@@ -17,6 +17,7 @@ pylint==3.0.2
 pylint-django==2.5.5
 pylint-plugin-utils==0.8.2
 PyYAML==6.0.1
+ruff==0.1.14
 sqlparse==0.4.4
 tomlkit==0.12.3
 virtualenv==20.25.0
