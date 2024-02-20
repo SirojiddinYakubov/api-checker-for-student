@@ -32,8 +32,8 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: ./newman/my_report.json
+          name: api-checker-artifact
+          path: ./newman/api-checker-report.json
 
       - name: Send run_id
         run: |
