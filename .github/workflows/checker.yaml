@@ -31,23 +31,23 @@ jobs:
       #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: api-checker-artifact
           path: ./newman/api-checker-report.json
 
-      - name: Set env as secret
-        env:
-          MY_VAL: ${{ secrets.PROJECT_ID }}
-        run: |
-          import os
-          for q in (os.getenv("MY_VAL")):
-            print(q)
-        shell: python
+#      - name: Set env as secret
+#        env:
+#          MY_VAL: ${{ secrets.PROJECT_ID }}
+#        run: |
+#          import os
+#          for q in (os.getenv("MY_VAL")):
+#            print(q)
+#        shell: python
 
-      - name: Sleep
-        run: |
-          sleep 120s
+#      - name: Sleep
+#        run: |
+#          sleep 120s
 
       - name: Send run_id
         run: |
