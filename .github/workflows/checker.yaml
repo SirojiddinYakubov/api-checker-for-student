@@ -30,14 +30,27 @@ jobs:
         continue-on-error: true
       #      - run: newman run "https://api.getpostman.com/collections/${{collectionID}}?apikey=${{ secrets.POSTMANAPIKEY }}" --environment "https://api.getpostman.com/environments/${{ environmentID }}?apikey=${{ secrets.POSTMANAPIKEY }}"
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
           name: api-checker-artifact
           path: ./newman/api-checker-report.json
 
+      - name: Set env as secret
+        env:
+          MY_VAL: ${{ secrets.PROJECT_ID }}
+        run: |
+          import os
+          for q in (os.getenv("MY_VAL")):
+            print(q)
+        shell: python
+
+      - name: Sleep
+        run: |
+          sleep 120s
+
       - name: Send run_id
         run: |
-          sleep 160s
           curl --location 'https://api-dev.mohirpool.uz/api/site/accelerators/github-feedbacks/${{ github.actor }}/' \
           --header 'X-API-KEY: ${{ secrets.X_API_KEY }}' \
           --form 'action_run_id=${{ github.run_id }}' \
