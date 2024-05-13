@@ -36,19 +36,6 @@ jobs:
           name: api-checker-artifact
           path: ./newman/api-checker-report.json
 
-#      - name: Set env as secret
-#        env:
-#          MY_VAL: ${{ secrets.PROJECT_ID }}
-#        run: |
-#          import os
-#          for q in (os.getenv("MY_VAL")):
-#            print(q)
-#        shell: python
-
-#      - name: Sleep
-#        run: |
-#          sleep 120s
-
       - name: Send run_id
         run: |
           curl --location 'https://api-dev.mohirpool.uz/api/site/accelerators/github-feedbacks/${{ github.actor }}/' \
